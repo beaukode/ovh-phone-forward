@@ -1,0 +1,33 @@
+{
+  "name": "ovh-phone-forward-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "@ovh-api/api": "^2.1.2",
+    "@ovh-api/auth": "^2.0.13",
+    "@ovh-api/me": "^2.0.13",
+    "@ovh-api/telephony": "^2.0.13",
+    "express": "^4.17.1",
+    "supertest": "^4.0.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {
+    "@types/supertest": "^2.0.8",
+    "@types/express": "^4.17.2",
+    "@types/jest": "^24.0.25",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.4"
+  },
+  "scripts": {
+    "build:dev": "webpack --config webpack.config.js",
+    "start:dev": "node dist/server",
+    "test": "jest"
+  },
+  "author": "Jérémie COLOMBO",
+  "license": "MIT"
+}
