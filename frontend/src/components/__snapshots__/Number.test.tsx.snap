@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Number /> Render 1`] = `
+<div>
+  <li
+    class="MuiListItem-container"
+  >
+    <div
+      class="MuiListItem-root MuiListItem-gutters MuiListItem-secondaryAction"
+    >
+      <div
+        class="MuiListItemText-root"
+      >
+        <span
+          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
+          id="number-number-1"
+        >
+          number-1
+        </span>
+      </div>
+    </div>
+    <div
+      class="MuiListItemSecondaryAction-root"
+    >
+      <span
+        class="MuiSwitch-root MuiSwitch-edgeEnd"
+      >
+        <span
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-62 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+          data-testid="switch"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <input
+              aria-labelledby="number-number-1"
+              class="PrivateSwitchBase-input-65 MuiSwitch-input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="MuiSwitch-thumb"
+            />
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </span>
+        <span
+          class="MuiSwitch-track"
+        />
+      </span>
+    </div>
+  </li>
+</div>
+`;
+
+exports[`<Number /> Render forwarded 1`] = `
+<div>
+  <li
+    class="MuiListItem-container"
+  >
+    <div
+      class="MuiListItem-root MuiListItem-gutters MuiListItem-secondaryAction"
+    >
+      <div
+        class="MuiListItemText-root MuiListItemText-multiline"
+      >
+        <span
+          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1"
+          id="number-number-1"
+        >
+          number-1
+        </span>
+        <p
+          class="MuiTypography-root makeStyles-secondary-88 MuiTypography-body2 MuiTypography-colorTextSecondary"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M18 11l5-5-5-5v3h-4v4h4v3zm2 4.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"
+            />
+          </svg>
+          <span
+            class="MuiBox-root MuiBox-root-146"
+          >
+            fwnumber-2
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      class="MuiListItemSecondaryAction-root"
+    >
+      <span
+        class="MuiSwitch-root MuiSwitch-edgeEnd"
+      >
+        <span
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-160 MuiSwitch-switchBase MuiSwitch-colorSecondary PrivateSwitchBase-checked-161 Mui-checked"
+          data-testid="switch"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <input
+              aria-labelledby="number-number-1"
+              checked=""
+              class="PrivateSwitchBase-input-163 MuiSwitch-input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="MuiSwitch-thumb"
+            />
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </span>
+        <span
+          class="MuiSwitch-track"
+        />
+      </span>
+    </div>
+  </li>
+</div>
+`;
