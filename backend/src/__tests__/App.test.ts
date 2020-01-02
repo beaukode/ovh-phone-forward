@@ -37,7 +37,9 @@ describe("HTTP Server", () => {
   test("/forward", () => {
     return request(App(new LinesManager()))
       .put("/forward")
-      .query({ line: "number", to: "fwnumber" })
+      .send({ line: "number", to: "fwnumber" })
+      .set("Content-Type", "application/json")
+      .expect("Content-Type", /json/)
       .expect(200)
       .expect({ ok: true })
       .then(() => {
@@ -49,7 +51,9 @@ describe("HTTP Server", () => {
   test("/forward disable", () => {
     return request(App(new LinesManager()))
       .put("/forward")
-      .query({ line: "number" })
+      .send({ line: "number" })
+      .set("Content-Type", "application/json")
+      .expect("Content-Type", /json/)
       .expect(200)
       .expect({ ok: true })
       .then(() => {

@@ -3,12 +3,13 @@ import LinesManager from "./LinesManager";
 
 export default function App(manager: LinesManager) {
   const app = express();
+  app.use(express.json());
 
   app.get("/states", async (req, res) => {
     try {
       const lines = await manager.getLines();
       const nichandle = await manager.getNichandle();
-      res.send({ nichandle, lines });
+      res.send({  nichandle, lines });
     } catch (err) {
       res.status(500).send(err);
     }
@@ -16,7 +17,7 @@ export default function App(manager: LinesManager) {
 
   app.put("/forward", async (req, res) => {
     try {
-      await manager.setForward(req.query["line"], req.query["to"]);
+      await manager.setForward(req.body["line"], req.body["to"]);
       res.send({ ok: true });
     } catch (err) {
       res.status(500).send(err);
