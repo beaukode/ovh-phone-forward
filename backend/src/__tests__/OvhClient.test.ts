@@ -114,8 +114,8 @@ describe("OvhClient", () => {
         expect(OvhTelMock$Line$Options$Put).toBeCalledTimes(1);
         expect(OvhTelMock$Line$Options$Put).toHaveBeenCalledWith({
           forwardUnconditional: true,
-          forwardBackupNature: "number",
-          forwardBackupNumber: "0033300000000",
+          forwardUnconditionalNature: "number",
+          forwardUnconditionalNumber: "0033300000000",
         });
       });
   });

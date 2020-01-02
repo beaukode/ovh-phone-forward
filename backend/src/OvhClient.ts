@@ -58,8 +58,8 @@ export default class {
       .line.$(line)
       .options.$put({
         forwardUnconditional: true,
-        forwardBackupNature: "number",
-        forwardBackupNumber: forwardTo,
+        forwardUnconditionalNature: "number",
+        forwardUnconditionalNumber: forwardTo,
       });
   }
 
