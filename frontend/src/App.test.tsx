@@ -178,4 +178,21 @@ describe("<App />", () => {
     ).toBeInTheDocument();
     expect(checkbox.checked).toBeFalsy();
   });
+
+  test("Click on about button show dialog", async () => {
+    jest.spyOn(window, "fetch").mockResolvedValueOnce(fetchResponse as any);
+
+    const { queryByRole, findByLabelText, queryByText } = render(<App />);
+
+    expect(queryByRole("dialog")).not.toBeInTheDocument();
+    expect(
+      queryByText("A propos de : OVH Phone Forward")
+    ).not.toBeInTheDocument();
+
+    const button = await findByLabelText("A propos");
+    fireEvent.click(button);
+
+    expect(queryByRole("dialog")).toBeInTheDocument();
+    expect(queryByText("A propos de : OVH Phone Forward")).toBeInTheDocument();
+  });
 });

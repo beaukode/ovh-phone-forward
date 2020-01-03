@@ -1,9 +1,19 @@
 import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { List, ListSubheader, Paper, Box, Typography } from "@material-ui/core";
+import {
+  List,
+  ListSubheader,
+  Paper,
+  Box,
+  Typography,
+  IconButton,
+  colors,
+} from "@material-ui/core";
+import { Info as AboutIcon } from "@material-ui/icons";
 import Number from "./components/Number";
 import NumberChooser from "./components/NumberChooser";
 import { Lines, extractNumbers } from "./Common";
+import AboutDialog from "./components/AboutDialog";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -15,6 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       margin: theme.spacing(1),
       paddingBottom: theme.spacing(1),
+    },
+    about: {
+      color: colors.grey[500],
     },
   })
 );
@@ -30,6 +43,8 @@ const App: React.FC = () => {
   const [error, setError] = React.useState("");
   const [numbers, setNumbers] = React.useState<string[]>([]);
   const [currentLine, setCurrentLine] = React.useState<string>();
+  const [about, setAbout] = React.useState(false);
+  const classes = useStyles();
 
   React.useEffect(() => {
     window
@@ -111,7 +126,14 @@ const App: React.FC = () => {
     setCurrentLine(undefined);
   };
 
-  const classes = useStyles();
+  const handleAboutClick = React.useCallback(() => {
+    setAbout(true);
+  }, []);
+
+  const handleAboutClose = React.useCallback(() => {
+    setAbout(false);
+  }, []);
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -137,6 +159,17 @@ const App: React.FC = () => {
           </Box>
         )}
       </Paper>
+      <Box m={1} textAlign="right">
+        <IconButton
+          aria-label="A propos"
+          size="small"
+          className={classes.about}
+          onClick={handleAboutClick}
+        >
+          <AboutIcon />
+        </IconButton>
+      </Box>
+      <AboutDialog open={about} onClose={handleAboutClose} />
       <NumberChooser onSelect={handleNumberSelect} numbers={numbers} />
     </div>
   );
