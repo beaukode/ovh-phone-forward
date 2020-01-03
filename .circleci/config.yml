@@ -1,0 +1,99 @@
+version: 2.1
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:10.4
+
+jobs:
+  backend:
+    executor: node
+    steps:
+      - checkout
+      - node/with-cache:
+          cache-key: backend/package.json
+          dir: ~/project/backend/node_modules
+          steps:
+            - run: cd backend && npm ci
+      - run: cd backend && npm test
+      - run: cd backend && npm run build
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - backend/dist
+            - LICENSE
+            - README.md
+            - Dockerfile
+            - backend/package.json
+            - backend/package-lock.json
+  frontend:
+    executor: node
+    steps:
+      - checkout
+      - node/with-cache:
+          cache-key: frontend/package.json
+          dir: ~/project/frontend/node_modules
+          steps:
+            - run: cd frontend && npm ci
+      - run: cd frontend && npm test
+      - run: cd frontend && npm run build
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - frontend/build
+  build:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - attach_workspace:
+          at: ~/project
+      - docker/check
+      - docker/build:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          tag: "$CIRCLE_BRANCH"
+      - docker/push:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          tag: "$CIRCLE_BRANCH"
+  build-tag:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - attach_workspace:
+          at: ~/project
+      - docker/check
+      - docker/build:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          tag: "$CIRCLE_TAG,latest"
+      - docker/push:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          tag: "$CIRCLE_TAG,latest"
+orbs:
+  node: circleci/node@1.1
+  docker: circleci/docker@0.5.20
+workflows:
+  version: 2
+  build-and-push:
+    jobs:
+      - frontend:
+          filters:
+            tags:
+              only: /.*/
+      - backend:
+          filters:
+            tags:
+              only: /.*/
+      - build:
+          requires:
+            - frontend
+            - backend
+          context: hub-registry
+      - build-tag:
+          requires:
+            - frontend
+            - backend
+          context: hub-registry
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
