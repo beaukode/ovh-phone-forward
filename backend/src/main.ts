@@ -13,6 +13,15 @@ async function main() {
   const client = new OvhClient(appKey, appSecret, consumerKey);
   const manager = new LinesManager(client);
   const nichandle = await manager.getNichandle();
+  if (!consumerKey) {
+    console.log("******************************************************");
+    console.log("*                                                    *");
+    console.log("* New consumer key autorized.                        *");
+    console.log("* To use it on next run set environement variable :  *");
+    console.log("* OVH_CONSUMER_KEY=" + client.getConsumerKey() + "  *");
+    console.log("*                                                    *");
+    console.log("******************************************************");
+  }
   console.log("Connected to NIChandle:", nichandle);
 
   const app = App(manager);

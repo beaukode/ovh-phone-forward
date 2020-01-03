@@ -135,4 +135,9 @@ describe("OvhClient", () => {
         });
       });
   });
+
+  test("getConsumerKey", () => {
+    const client = new OvhClient("myappkey", "myappsecret");
+    expect(client.getConsumerKey()).toBe("myconsumerkey");
+  })
 });

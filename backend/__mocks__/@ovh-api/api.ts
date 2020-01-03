@@ -1,5 +1,7 @@
 const Mock = jest.fn().mockImplementation(() => {
-  return {};
+  return {
+    consumerKey: "myconsumerkey",
+  };
 });
 
 export default Mock;

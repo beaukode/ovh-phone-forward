@@ -21,6 +21,10 @@ export default class {
     this.tel = OvhTel(this.ovh);
   }
 
+  public getConsumerKey() {
+    return this.ovh.consumerKey;
+  }
+
   public getNichandle(): Promise<string> {
     return this.me.$get().then(me => {
       return me.nichandle;
