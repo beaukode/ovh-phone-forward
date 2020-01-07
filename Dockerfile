@@ -1,7 +1,7 @@
 FROM node:10-alpine
 
 COPY backend/dist/*.js /app/
-COPY frontend/build/* /app/public/
+COPY frontend/build /app/public
 COPY LICENSE /app/
 COPY README.md /app/
 COPY backend/package.json /app/
