@@ -36,3 +36,8 @@ async function main() {
 }
 
 main();
+
+process.on("SIGINT", function() {
+  console.log("Exiting...");
+  process.exit();
+});
